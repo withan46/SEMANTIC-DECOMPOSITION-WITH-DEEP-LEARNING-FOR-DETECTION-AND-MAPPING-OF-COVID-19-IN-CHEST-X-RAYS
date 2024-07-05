@@ -12,13 +12,12 @@ image = cv2.resize(image, self.image_size)
 image = image / 255.0 # Normalize to [0, 1] 
 
 ```
-# Κώδικας 1: Προ επεξεργασία δεδομένων
+# Προ επεξεργασία δεδομένων
 
 ### Εκπαίδευση Μοντέλου:
-
-# Εκπαίδευση Μοντέλου
-
 Στην εκπαίδευση του μοντέλου περιλαμβάνονται τεχνικές όπως ModelCheckPoint και EarlyStopping
+
+# Κώδικας 1: Early Stopping και ModelCkeck Point
 
 ```python
 from tensorflow.keras.callbacks import ModelCheckpoint, EarlyStopping 
@@ -32,7 +31,7 @@ history = atrous_unet.fit(train_gen, validation_data=val_gen, epochs=14,
                           callbacks=[checkpoint_callback, early_stop]) 
 
 ```
-# Κώδικας 2: Early Stopping και ModelCkeck Point
+# Κώδικας 2: Συνάρτηση υπολογισμού Recall, Precision, F1 Score, Accuracy
 
 ### Συνάρτηση υπολογισμού Recall – Precision – F1 Score – Accuracy
 
@@ -54,7 +53,7 @@ def calculate_metrics_from_cm(cm):
     return precision, recall, f1, accuracy  
 
 ```
-# Κώδικας 3: Συνάρτηση υπολογισμού Recall, Precision, F1 Score, Accuracy
+# Κώδικας 3: Προσαρμοσμένη κλάση ImageMaskGenerator
 
 ### Προσαρμοσμένη κλάση ImageMaskGenerator:
 
@@ -109,8 +108,8 @@ class ImageMaskGenerator(Sequence):
             batch_masks[i] = mask 
         return batch_images, batch_masks  
 ```
-# Κώδικας 4: Προσαρμοσμένη κλάση ImageMaskGenerator
 
+# Κώδικας 4: ImageDataGenerator - Αύξηση δεδομένων
 
 ### Αύξηση δεδομένων με ImageDataGenerator:
 
@@ -153,7 +152,6 @@ def create_gens(train_df, valid_df, test_df, batch_size):
 train_gen, val_gen, test_gen = create_gens(train_df, val_df, test_df, batch_size=32)
 
 ```
-# Κώδικας 5: ImageDataGenerator - Αύξηση δεδομένων
 
 
 Με αυτόν τον τρόπο, κάθε κομμάτι κώδικα είναι σε ξεχωριστό αρχείο markdown με τον αντίστοιχο τίτλο και περιγραφή.
